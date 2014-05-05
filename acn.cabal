@@ -1,0 +1,46 @@
+Name:                acn
+Version:             0.1.0
+Synopsis:            AlephCloud syntax notation
+Description:         AlephCloud syntax notation
+License:             AllRightsReserved
+Copyright:           AlephCloud
+Author:              Vincent Hanquez
+Category:            Prototype
+Stability:           experimental
+Build-Type:          Simple
+Homepage:            http://alephcloud.com/
+Cabal-Version:       >=1.8
+
+Library
+  Exposed-modules:   AlephCloud.ACN
+                   , AlephCloud.ACN.Types
+                   , AlephCloud.ACN.Event
+                   , AlephCloud.ACN.Marshall
+  Other-modules:     AlephCloud.ACN.Event.Types
+                   , AlephCloud.ACN.Event.Parse
+                   , AlephCloud.ACN.Event.Encode
+                   , AlephCloud.ACN.LEB128
+  Hs-Source-Dirs:    .
+  Build-depends:     base >= 4 && < 5
+                   , array
+                   , mtl
+                   , containers
+                   , bytestring
+                   , binary >= 0.7
+                   , utf8-string
+  ghc-options:       -Wall
+
+Test-Suite test-acn
+  type:              exitcode-stdio-1.0
+  hs-source-dirs:    tests
+  Main-is:           Tests.hs
+  Build-Depends:     base >= 3 && < 5
+                   , bytestring
+                   , mtl
+                   , QuickCheck >= 2
+                   , HUnit
+                   , test-framework
+                   , test-framework-quickcheck2
+                   , test-framework-hunit
+                   , acn
+  ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures
