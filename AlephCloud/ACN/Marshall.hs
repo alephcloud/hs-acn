@@ -27,7 +27,7 @@ toTaggedVal (AcnBytes bs) = TaggedVal 1 bs
 toTaggedVal (AcnString s) = TaggedVal 2 $ UTF8.fromString s
 toTaggedVal (AcnBool b)   = TaggedVal 3 $ B.singleton (if b then 1 else 0)
 toTaggedVal (AcnInt i)    = TaggedVal 5 $ intToBS i
-toTaggedVal (AcnID oid)   = TaggedVal 6 B.empty
+toTaggedVal (AcnID (cat,sub)) = TaggedVal 6 (B.singleton cat `B.append` intToBS sub)
 toTaggedVal AcnSeqStart   = TaggedVal 7 B.empty
 toTaggedVal AcnSeqEnd     = TaggedVal 8 B.empty
 toTaggedVal AcnSetStart   = TaggedVal 9 B.empty
@@ -42,7 +42,9 @@ fromTaggedVal (TaggedVal t b) =
           | b == "\x00" -> Just $ AcnBool False
           | otherwise   -> Nothing
         5 -> Just $ AcnInt (intFromBS b)
-        6 -> Just $ AcnID [] -- FIXME
+        6 -> case B.uncons b of
+                Nothing     -> Nothing
+                Just (c,b') -> Just $ AcnID (c, intFromBS b')
         7 -> Just $ AcnSeqStart
         8 -> Just $ AcnSeqEnd
         9 -> Just $ AcnSetStart

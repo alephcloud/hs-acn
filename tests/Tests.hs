@@ -23,13 +23,15 @@ instance Arbitrary ByteString where
     arbitrary = choose (0,49) >>= \sz ->
                 pack <$> replicateM sz arbitrary
 
+arbitraryID = (,) <$> arbitrary <*> choose (1,49512)
+
 instance Arbitrary Acn where
     arbitrary = oneof
         [ AcnBytes  <$> arbitrary
         , AcnString <$> arbitrary
         , AcnBool   <$> arbitrary
         , AcnInt    <$> arbitrary
-        --, AcnID     <$> arbitrary
+        , AcnID     <$> arbitraryID
         , pure AcnSeqStart
         , pure AcnSeqEnd
         , pure AcnSetStart

@@ -2,8 +2,9 @@
 module AlephCloud.ACN.Types where
 
 import Data.ByteString (ByteString)
+import Data.Word
 
-type ID = [Integer]
+type ID = (Word8, Integer)
 type BitArray = ByteString
 
 -- | Abstract Syntax Notation
