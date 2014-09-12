@@ -4,6 +4,7 @@ module AlephCloud.ACN
     , module AlephCloud.ACN.Marshall
     , acnObjectFromBytes
     , acnObjectToBytes
+    , acnStreamToBytes
     ) where
 
 import AlephCloud.ACN.Types
@@ -17,4 +18,7 @@ acnObjectFromBytes =
     either (Left . snd) (maybe (Left "Invalid tagged val") fromACN . sequence . map fromTaggedVal) . runParse . L.fromStrict
 
 acnObjectToBytes :: ToACN a => a -> B.ByteString
-acnObjectToBytes a = toByteString $ map toTaggedVal $ toACN a
+acnObjectToBytes = acnStreamToBytes . toACN
+
+acnStreamToBytes :: [Acn] -> B.ByteString
+acnStreamToBytes as = toByteString $ map toTaggedVal as
