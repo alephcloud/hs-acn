@@ -1,0 +1,6 @@
+cabal.sandbox.config
+dist
+.*.swp
+.*.swo
+*.o
+.hdevtools.sock
