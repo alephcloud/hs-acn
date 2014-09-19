@@ -66,6 +66,18 @@ instance FromACN a => FromACN [a] where
                                             Left err         -> Left err
     fromACN _ = Left "expecting AcnSetStart"
 
+instance ToACN a => ToACN (Maybe a) where
+    toACN Nothing = [AcnSeqStart,AcnSeqEnd]
+    toACN (Just a) = [AcnSeqStart] ++ toACN a ++ [AcnSeqEnd]
+instance FromACN a => FromACN (Maybe a) where
+    fromACN (AcnSeqStart:AcnSeqEnd:l) = Right (Nothing, l)
+    fromACN (AcnSeqStart:l) =
+        case fromACN l of
+            Left err                  -> Left ("FromACN Maybe: " ++ err)
+            Right (o, (AcnSeqEnd:l')) -> Right (o, l')
+            Right (_, _)              -> Left ("FromACN Maybe: unparsed data in maybe container")
+    fromACN _ = Left "FromAcn Maybe: Expecting AcnSeqStart"
+
 instance (ToACN a1, ToACN a2) => ToACN (a1,a2) where
     toACN (a1,a2) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ [AcnSeqEnd]
 instance (FromACN a1, FromACN a2) => FromACN (a1,a2) where
@@ -75,6 +87,7 @@ instance (FromACN a1, FromACN a2) => FromACN (a1,a2) where
         case r' of
             AcnSeqEnd:l -> return ((a1,a2), l)
             _           -> Left "expecting AcnSeqEnd"
+    fromACN _ = Left "FromACN Tuple: Expecting AcnSeqStart"
 instance (ToACN a1, ToACN a2, ToACN a3) => ToACN (a1,a2,a3) where
     toACN (a1,a2,a3) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ toACN a3 ++ [AcnSeqEnd]
 instance (FromACN a1, FromACN a2, FromACN a3) => FromACN (a1,a2,a3) where
@@ -85,6 +98,7 @@ instance (FromACN a1, FromACN a2, FromACN a3) => FromACN (a1,a2,a3) where
         case r' of
             AcnSeqEnd:l -> return ((a1,a2,a3), l)
             _           -> Left "expecting AcnSeqEnd"
+    fromACN _ = Left "FromACN Tuple: Expecting AcnSeqStart"
 instance (ToACN a1, ToACN a2, ToACN a3, ToACN a4) => ToACN (a1,a2,a3,a4) where
     toACN (a1,a2,a3,a4) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ toACN a3 ++ toACN a4 ++ [AcnSeqEnd]
 instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4) => FromACN (a1,a2,a3,a4) where
