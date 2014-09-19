@@ -110,6 +110,7 @@ instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4) => FromACN (a1,a2,a3,a
         case r' of
             AcnSeqEnd:l -> return ((a1,a2,a3,a4), l)
             _           -> Left "expecting AcnSeqEnd"
+    fromACN _ = Left "FromACN Tuple: Expecting AcnSeqStart"
 instance (ToACN a1, ToACN a2, ToACN a3, ToACN a4, ToACN a5) => ToACN (a1,a2,a3,a4,a5) where
     toACN (a1,a2,a3,a4,a5) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ toACN a3 ++ toACN a4 ++ toACN a5 ++ [AcnSeqEnd]
 instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4, FromACN a5) => FromACN (a1,a2,a3,a4,a5) where
@@ -122,6 +123,7 @@ instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4, FromACN a5) => FromACN
         case r' of
             AcnSeqEnd:l -> return ((a1,a2,a3,a4,a5), l)
             _           -> Left "expecting AcnSeqEnd"
+    fromACN _ = Left "FromACN Tuple: Expecting AcnSeqStart"
 instance (ToACN a1, ToACN a2, ToACN a3, ToACN a4, ToACN a5, ToACN a6) => ToACN (a1,a2,a3,a4,a5,a6) where
     toACN (a1,a2,a3,a4,a5,a6) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ toACN a3 ++ toACN a4 ++ toACN a5 ++ toACN a6 ++ [AcnSeqEnd]
 instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4, FromACN a5, FromACN a6) => FromACN (a1,a2,a3,a4,a5,a6) where
@@ -135,3 +137,4 @@ instance (FromACN a1, FromACN a2, FromACN a3, FromACN a4, FromACN a5, FromACN a6
         case r' of
             AcnSeqEnd:l -> return ((a1,a2,a3,a4,a5,a6), l)
             _           -> Left "expecting AcnSeqEnd"
+    fromACN _ = Left "FromACN Tuple: Expecting AcnSeqStart"
