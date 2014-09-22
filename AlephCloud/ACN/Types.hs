@@ -73,10 +73,10 @@ instance FromACN a => FromACN (Maybe a) where
     fromACN (AcnSeqStart:AcnSeqEnd:l) = Right (Nothing, l)
     fromACN (AcnSeqStart:l) =
         case fromACN l of
-            Left err                  -> Left ("FromACN Maybe: " ++ err)
-            Right (o, (AcnSeqEnd:l')) -> Right (o, l')
+            Left err                  -> Left ("FromACN Maybe: inner parsing failed: " ++ err)
+            Right (o, (AcnSeqEnd:l')) -> Right (Just o, l')
             Right (_, _)              -> Left ("FromACN Maybe: unparsed data in maybe container")
-    fromACN _ = Left "FromAcn Maybe: Expecting AcnSeqStart"
+    fromACN _ = Left "FromACN Maybe: Expecting AcnSeqStart"
 
 instance (ToACN a1, ToACN a2) => ToACN (a1,a2) where
     toACN (a1,a2) = [AcnSeqStart] ++ toACN a1 ++ toACN a2 ++ [AcnSeqEnd]
