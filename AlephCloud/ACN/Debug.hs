@@ -22,7 +22,6 @@ acnPretty = concat . execWriter . prettyPrint 0
     prettyPrint _ []                   = return ()
     prettyPrint n (x1@AcnSeqStart : x2@AcnSeqEnd : xs) = indent n >> p x1 >> p x2 >> newline >> prettyPrint n xs
     prettyPrint n (x1@AcnSetStart : x2@AcnSetEnd : xs) = indent n >> p x1 >> p x2 >> newline >> prettyPrint n xs
-    prettyPrint n (x@AcnSeqEnd : xs)   = indent (n-1) >> p x >> newline >> prettyPrint (n-1) xs
     prettyPrint n (x@AcnSeqStart : xs) = indent n >> p x >> newline >> prettyPrint (n+1) xs
     prettyPrint n (x@AcnSeqEnd : xs)   = indent (n-1) >> p x >> newline >> prettyPrint (n-1) xs
     prettyPrint n (x@AcnSetStart : xs) = indent n >> p x >> newline >> prettyPrint (n+1) xs
