@@ -1,20 +1,26 @@
 module AlephCloud.ACN.Debug
     ( acnPretty
+    , acnPrettyWith
     ) where
 
 import           AlephCloud.ACN.Types
 import           Control.Monad.Writer
+import           Data.ByteString (ByteString)
 import qualified Data.ByteString as B
 import           Numeric
 
-hexdump :: B.ByteString -> String
+hexdump :: ByteString -> String
 hexdump bs = concatMap hex $ B.unpack bs
     where hex n
             | n > 0xa   = showHex n ""
             | otherwise = "0" ++ showHex n ""
 
-acnPretty :: [Acn] -> String
-acnPretty = concat . execWriter . prettyPrint 0
+-- | Pretty printer with parameterized method printer
+acnPrettyWith :: (ByteString -> String) -- ^ use a specific function to dump AcnBytes
+              -> (Integer -> String)    -- ^ use a specific function to dump AcnInt
+              -> [Acn]
+              -> String
+acnPrettyWith dumpByteString dumpInt = concat . execWriter . prettyPrint 0
   where
     indent n = string (replicate n ' ')
 
@@ -29,8 +35,8 @@ acnPretty = concat . execWriter . prettyPrint 0
     prettyPrint n (x : xs)             = indent n >> p x >> newline >> prettyPrint n xs
 
     p (AcnBool b)    = string (show b)
-    p (AcnInt i)     = string ("int: " ++ showHex i "")
-    p (AcnBytes bs)  = string ("bytes: " ++ hexdump bs)
+    p (AcnInt i)     = string ("int: " ++ dumpInt i)
+    p (AcnBytes bs)  = string ("bytes: " ++ dumpByteString bs)
     p (AcnID c)      = string ("id" ++ show c)
     p (AcnSeqStart)  = string "{"
     p (AcnSeqEnd)    = string "}"
@@ -43,3 +49,9 @@ acnPretty = concat . execWriter . prettyPrint 0
 
     string :: String -> Writer [String] ()
     string s = tell [s]
+
+-- | default pretty printer
+--
+-- dump methods show content in Hexadecimal (ByteString and Integer)
+acnPretty :: [Acn] -> String
+acnPretty = acnPrettyWith hexdump (\i -> showHex i "")
