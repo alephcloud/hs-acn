@@ -2,7 +2,8 @@ Name:                acn
 Version:             0.1.1
 Synopsis:            AlephCloud syntax notation
 Description:         AlephCloud syntax notation
-License:             AllRightsReserved
+License:             Apache-2
+License-file:        LICENSE
 Copyright:           AlephCloud
 Author:              Vincent Hanquez
 Category:            Prototype
