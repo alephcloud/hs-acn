@@ -1,6 +1,6 @@
 -- Copyright (c) 2013-2014 PivotCloud, Inc.
 --
--- AlephCloud.ACN.Event.Encode
+-- Data.ACN.Event.Encode
 --
 -- Please feel free to contact us at licensing@pivotmail.com with any
 -- contributions, additions, or other feedback; we would love to hear from
@@ -17,7 +17,7 @@
 -- under the License.
 --
 
-module AlephCloud.ACN.Event.Encode
+module Data.ACN.Event.Encode
     ( toLazyByteString
     , fromLazyByteString
     , toByteString
@@ -25,7 +25,7 @@ module AlephCloud.ACN.Event.Encode
     ) where
 
 import Control.Applicative
-import AlephCloud.ACN.Event.Types
+import Data.ACN.Event.Types
 import Data.Binary.Put (runPut)
 import Data.Binary.Get (runGetIncremental, Decoder(..), isEmpty, pushChunks)
 import Data.Binary (put, get)

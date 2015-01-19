@@ -1,6 +1,6 @@
 -- Copyright (c) 2013-2014 PivotCloud, Inc.
 --
--- AlephCloud.ACN.Event
+-- Data.ACN.Event
 --
 -- Please feel free to contact us at licensing@pivotmail.com with any
 -- contributions, additions, or other feedback; we would love to hear from
@@ -16,8 +16,14 @@
 -- License for the specific language governing permissions and limitations
 -- under the License.
 --
+-- |
+-- Module      : Data.ACN.Event
+-- Copyright   : (c) 2013-2014 PivotCloud, Inc
+-- License     : Apache-2
+-- Maintainer  : licensing@pivotmail.com
+--
 
-module AlephCloud.ACN.Event
+module Data.ACN.Event
     ( module Data.ACN.Event.Types
     , module Data.ACN.Event.Parse
     , module Data.ACN.Event.Encode

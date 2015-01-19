@@ -1,16 +1,38 @@
+-- Copyright (c) 2013-2014 PivotCloud, Inc.
+--
+-- Tests
+--
+-- Please feel free to contact us at licensing@pivotmail.com with any
+-- contributions, additions, or other feedback; we would love to hear from
+-- you.
+--
+-- Licensed under the Apache License, Version 2.0 (the "License"); you may
+-- not use this file except in compliance with the License. You may obtain a
+-- copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+--
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+-- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+-- License for the specific language governing permissions and limitations
+-- under the License.
+--
+-- |
+-- Module      : Tests
+-- Copyright   : (c) 2013-2014 PivotCloud, Inc
+-- License     : Apache-2
+-- Maintainer  : licensing@pivotmail.com
+--
+
 module Main where
 
 import Control.Applicative
 import Control.Monad
-import Test.Framework (defaultMain, testGroup)
-import Test.Framework.Providers.QuickCheck2 (testProperty)
-import Test.Framework.Providers.HUnit (testCase)
-
-import Test.HUnit
-import Test.QuickCheck
+import Test.Tasty (defaultMain, testGroup)
+import Test.Tasty.QuickCheck
+import Test.Tasty.HUnit
 
 import Data.ByteString (ByteString, pack)
-import AlephCloud.ACN
+import Data.ACN
 import Data.Maybe
 
 newtype AcnEvents = AcnEvents [TaggedVal]
@@ -61,4 +83,4 @@ assertEQ expected got
     | expected == got = True
     | otherwise       = error ("expected: " ++ show expected ++ " got: " ++ show got)
 
-main = defaultMain tests
+main = defaultMain $ testGroup "ACN" tests

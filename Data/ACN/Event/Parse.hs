@@ -1,6 +1,6 @@
 -- Copyright (c) 2013-2014 PivotCloud, Inc.
 --
--- AlephCloud.ACN.Event.Parse
+-- Data.ACN.Event.Parse
 --
 -- Please feel free to contact us at licensing@pivotmail.com with any
 -- contributions, additions, or other feedback; we would love to hear from
@@ -17,7 +17,7 @@
 -- under the License.
 --
 
-module AlephCloud.ACN.Event.Parse
+module Data.ACN.Event.Parse
     ( TaggedVal(..)
     , runParse
     ) where
@@ -28,7 +28,7 @@ import Data.Binary (get)
 import Data.Binary.Get
 import qualified Data.ByteString.Lazy as L
 
-import AlephCloud.ACN.Event.Types
+import Data.ACN.Event.Types
 
 -- | run parser on a lazy bytestring
 -- TODO add an incremental interface ..

@@ -17,7 +17,7 @@
 -- under the License.
 --
 
-module AlephCloud.ACN.Event.Types
+module Data.ACN.Event.Types
     ( TaggedVal(..)
     ) where
 
@@ -29,7 +29,7 @@ import Data.Binary.Get
 import Data.Binary.Put
 import Data.Binary (Binary(..))
 
-import AlephCloud.ACN.LEB128
+import Data.ACN.LEB128
 
 -- | A tagged value
 data TaggedVal = TaggedVal

@@ -1,9 +1,8 @@
 Name:                acn
-Version:             0.1.1
-Synopsis:            AlephCloud syntax notation
-Description:         AlephCloud syntax notation
+Version:             0.1.2
+Synopsis:            Abstract Crypto Notation
+Description:         Abstract Crypto Notation
 License:             Apache-2
-License-file:        LICENSE
 Copyright:           AlephCloud
 Author:              Vincent Hanquez
 Category:            Prototype
@@ -13,15 +12,20 @@ Homepage:            http://alephcloud.com/
 Cabal-Version:       >=1.8
 
 Library
-  Exposed-modules:   AlephCloud.ACN
+  Exposed-modules:   Data.ACN
+                   , Data.ACN.Debug
+                   , Data.ACN.Types
+                   , Data.ACN.Event
+                   , Data.ACN.Marshall
+                   , AlephCloud.ACN
                    , AlephCloud.ACN.Debug
                    , AlephCloud.ACN.Types
                    , AlephCloud.ACN.Event
                    , AlephCloud.ACN.Marshall
-  Other-modules:     AlephCloud.ACN.Event.Types
-                   , AlephCloud.ACN.Event.Parse
-                   , AlephCloud.ACN.Event.Encode
-                   , AlephCloud.ACN.LEB128
+  Other-modules:     Data.ACN.Event.Types
+                   , Data.ACN.Event.Parse
+                   , Data.ACN.Event.Encode
+                   , Data.ACN.LEB128
   Hs-Source-Dirs:    .
   Build-depends:     base >= 4 && < 5
                    , array
@@ -39,10 +43,8 @@ Test-Suite test-acn
   Build-Depends:     base >= 3 && < 5
                    , bytestring
                    , mtl
-                   , QuickCheck >= 2
-                   , HUnit
-                   , test-framework
-                   , test-framework-quickcheck2
-                   , test-framework-hunit
+                   , tasty
+                   , tasty-quickcheck
+                   , tasty-hunit
                    , acn
   ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures
