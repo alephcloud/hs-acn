@@ -1,4 +1,4 @@
-module AlephCloud.ACN.Event.Encode
+module Data.ACN.Event.Encode
     ( toLazyByteString
     , fromLazyByteString
     , toByteString
@@ -6,7 +6,7 @@ module AlephCloud.ACN.Event.Encode
     ) where
 
 import Control.Applicative
-import AlephCloud.ACN.Event.Types
+import Data.ACN.Event.Types
 import Data.Binary.Put (runPut)
 import Data.Binary.Get (runGetIncremental, Decoder(..), isEmpty, pushChunks)
 import Data.Binary (put, get)

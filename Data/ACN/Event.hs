@@ -1,4 +1,4 @@
-module AlephCloud.ACN.Event
+module Data.ACN.Event
     ( module Data.ACN.Event.Types
     , module Data.ACN.Event.Parse
     , module Data.ACN.Event.Encode

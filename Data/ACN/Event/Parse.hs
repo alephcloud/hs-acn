@@ -1,4 +1,4 @@
-module AlephCloud.ACN.Event.Parse
+module Data.ACN.Event.Parse
     ( TaggedVal(..)
     , runParse
     ) where
@@ -9,7 +9,7 @@ import Data.Binary (get)
 import Data.Binary.Get
 import qualified Data.ByteString.Lazy as L
 
-import AlephCloud.ACN.Event.Types
+import Data.ACN.Event.Types
 
 -- | run parser on a lazy bytestring
 -- TODO add an incremental interface ..

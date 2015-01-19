@@ -12,15 +12,20 @@ Homepage:            http://alephcloud.com/
 Cabal-Version:       >=1.8
 
 Library
-  Exposed-modules:   AlephCloud.ACN
+  Exposed-modules:   Data.ACN
+                   , Data.ACN.Debug
+                   , Data.ACN.Types
+                   , Data.ACN.Event
+                   , Data.ACN.Marshall
+                   , AlephCloud.ACN
                    , AlephCloud.ACN.Debug
                    , AlephCloud.ACN.Types
                    , AlephCloud.ACN.Event
                    , AlephCloud.ACN.Marshall
-  Other-modules:     AlephCloud.ACN.Event.Types
-                   , AlephCloud.ACN.Event.Parse
-                   , AlephCloud.ACN.Event.Encode
-                   , AlephCloud.ACN.LEB128
+  Other-modules:     Data.ACN.Event.Types
+                   , Data.ACN.Event.Parse
+                   , Data.ACN.Event.Encode
+                   , Data.ACN.LEB128
   Hs-Source-Dirs:    .
   Build-depends:     base >= 4 && < 5
                    , array
