@@ -2,15 +2,12 @@ module Main where
 
 import Control.Applicative
 import Control.Monad
-import Test.Framework (defaultMain, testGroup)
-import Test.Framework.Providers.QuickCheck2 (testProperty)
-import Test.Framework.Providers.HUnit (testCase)
-
-import Test.HUnit
-import Test.QuickCheck
+import Test.Tasty (defaultMain, testGroup)
+import Test.Tasty.QuickCheck
+import Test.Tasty.HUnit
 
 import Data.ByteString (ByteString, pack)
-import AlephCloud.ACN
+import Data.ACN
 import Data.Maybe
 
 newtype AcnEvents = AcnEvents [TaggedVal]
@@ -61,4 +58,4 @@ assertEQ expected got
     | expected == got = True
     | otherwise       = error ("expected: " ++ show expected ++ " got: " ++ show got)
 
-main = defaultMain tests
+main = defaultMain $ testGroup "ACN" tests

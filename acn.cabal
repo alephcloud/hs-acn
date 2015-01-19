@@ -43,10 +43,8 @@ Test-Suite test-acn
   Build-Depends:     base >= 3 && < 5
                    , bytestring
                    , mtl
-                   , QuickCheck >= 2
-                   , HUnit
-                   , test-framework
-                   , test-framework-quickcheck2
-                   , test-framework-hunit
+                   , tasty
+                   , tasty-quickcheck
+                   , tasty-hunit
                    , acn
   ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures
