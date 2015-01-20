@@ -29,6 +29,7 @@ module Data.ACN
     , module Data.ACN.Marshall
     , acnObjectFromBytes
     , acnObjectToBytes
+    , acnStreamFromBytes
     , acnStreamToBytes
     ) where
 
@@ -47,3 +48,8 @@ acnObjectToBytes = acnStreamToBytes . toACN
 
 acnStreamToBytes :: [Acn] -> B.ByteString
 acnStreamToBytes as = toByteString $ map toTaggedVal as
+
+acnStreamFromBytes :: B.ByteString -> Either String [Acn]
+acnStreamFromBytes =
+    either (Left . snd) (sequence . map fromTaggedValE) . runParse . L.fromStrict
+  where fromTaggedValE t = maybe (Left $ "unknown or invalid ACN object: " ++ show t) Right $ fromTaggedVal t
