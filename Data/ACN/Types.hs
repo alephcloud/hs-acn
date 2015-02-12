@@ -49,6 +49,12 @@ class ToACN a where
 class FromACN a where -- not sure if String is the best "error" type..
     fromACN :: [Acn] -> Either String (a, [Acn])
 
+instance ToACN Acn where
+    toACN a = [a]
+instance FromACN Acn where
+    fromACN []     = Left "FromACN[Acn]: end of stream"
+    fromACN (x:xs) = Right (x,xs)
+
 instance ToACN ByteString where
     toACN = (:[]) . AcnBytes
 instance FromACN ByteString where
