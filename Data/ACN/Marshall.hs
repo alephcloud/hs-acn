@@ -1,4 +1,4 @@
--- Copyright (c) 2013-2014 PivotCloud, Inc.
+-- Copyright (c) 2013-2015 PivotCloud, Inc.
 --
 -- Data.ACN.Marshall
 --
@@ -15,14 +15,16 @@
 -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 -- License for the specific language governing permissions and limitations
 -- under the License.
---
+
 -- |
 -- Module      : Data.ACN.Marshall
--- Copyright   : (c) 2013-2014 PivotCloud, Inc
--- License     : Apache-2
+-- Copyright: Copyright (c) 2013-2015 PivotCloud, Inc.
+-- License: Apache License, Version 2.0
 -- Maintainer  : licensing@pivotmail.com
 --
+
 {-# LANGUAGE OverloadedStrings #-}
+
 module Data.ACN.Marshall
     ( toTaggedVal, fromTaggedVal
     ) where

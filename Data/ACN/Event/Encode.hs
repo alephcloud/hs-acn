@@ -1,4 +1,4 @@
--- Copyright (c) 2013-2014 PivotCloud, Inc.
+-- Copyright (c) 2013-2015 PivotCloud, Inc.
 --
 -- Data.ACN.Event.Encode
 --
@@ -15,7 +15,6 @@
 -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 -- License for the specific language governing permissions and limitations
 -- under the License.
---
 
 module Data.ACN.Event.Encode
     ( toLazyByteString
