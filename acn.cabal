@@ -2,8 +2,9 @@ Name:                acn
 Version:             0.1.2.1
 Synopsis:            Abstract Crypto Notation
 Description:         Abstract Crypto Notation
-License:             Apache-2
+License:             Apache-2.0
 Copyright:           Copyright (c) 2013-2015 PivotCloud, Inc.
+license-file:        LICENSE
 Author:              Vincent Hanquez
 Category:            Prototype
 Stability:           experimental
