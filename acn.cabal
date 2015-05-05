@@ -1,15 +1,25 @@
 Name:                acn
-Version:             0.1.2
+Version:             0.1.2.1
 Synopsis:            Abstract Crypto Notation
 Description:         Abstract Crypto Notation
-License:             Apache-2
+License:             Apache-2.0
 Copyright:           Copyright (c) 2013-2015 PivotCloud, Inc.
+license-file:        LICENSE
 Author:              Vincent Hanquez
 Category:            Prototype
 Stability:           experimental
 Build-Type:          Simple
 Homepage:            http://alephcloud.com/
 Cabal-Version:       >=1.8
+
+source-repository head
+    type: git
+    location: https://github.com/alephcloud/hs-acn
+
+source-repository this
+    type: git
+    location: https://github.com/alephcloud/hs-acn
+    tag: 0.1.2.1
 
 Library
   Exposed-modules:   Data.ACN
